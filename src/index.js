@@ -87,8 +87,7 @@ f();
  Пример:
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
-function returnArgumentsArray () {
-    var args = Array.prototype.slice.call(arguments);
+function returnArgumentsArray (...args) {
 
     return args;
 }
@@ -110,10 +109,10 @@ returnArgumentsArray(1, 2, 3);
 
    console.log(newSum()) выведет 6
  */
-function bindFunction(fn) {
-    var argArray = Array.prototype.map.call(arguments, e => e);
+function bindFunction(fn, ...args) {
+    var argArray = Array.prototype.map.call(args, e => e);
 
-    argArray = argArray.slice(1);
+    argArray = argArray.slice();
 
     return fn.bind(null, ...argArray);
 }
