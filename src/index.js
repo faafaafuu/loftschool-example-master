@@ -17,7 +17,6 @@ function returnFirstArgument(word) {
   return word;
 }
 
-console.log(returnFirstArgument('word'));
 
 /*
  Задание 2:
@@ -33,13 +32,12 @@ console.log(returnFirstArgument('word'));
  Пример:
    sumWithDefaults(10) вернет 110
  */
-function sumWithDefaults(a, b) {
-  b = 100;
+function sumWithDefaults(a, b = 100) {
 
   return a + b;
 }
 
-console.log(sumWithDefaults(78));
+sumWithDefaults(78);
 
 /*
  Задание 3:
@@ -50,12 +48,9 @@ console.log(sumWithDefaults(78));
    returnFnResult(() => 'привет') вернет 'привет'
  */
 function returnFnResult(fn) {
-  var childFunction = () => {console.log(fn)}
-  
-  return childFunction();
-}
 
-returnFnResult('Greeting for childFunction!');
+  return fn()
+}
 
 /*
  Задание 4:
@@ -71,7 +66,7 @@ returnFnResult('Greeting for childFunction!');
    console.log(f()); // выведет 13
  */
 function returnCounter(number){
-  var counter = number + 1;
+  var counter = number;
 
     return () => counter++;
 }
@@ -114,20 +109,20 @@ console.log(returnArgumentsArray(1,2,3));
 
    console.log(newSum()) выведет 6
  */
-var sum;
+var multiply;
 
 function bindFunction(fn,a,b){
-  sum = function(){
-    
+  multiply = function(){
+
     return a + b;
   }
 
-  return sum;
+  return multiply;
 }
 
-var newSum = bindFunction(sum,2,4);
+var newRes = bindFunction(multiply,2,4);
 
-console.log(newSum());
+console.log(newRes());
 
 export {
     returnFirstArgument,
