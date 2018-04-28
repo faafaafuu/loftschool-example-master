@@ -14,9 +14,8 @@
  */
 function returnFirstArgument(word) {
 
-  return word;
+    return word;
 }
-
 
 /*
  Задание 2:
@@ -34,7 +33,7 @@ function returnFirstArgument(word) {
  */
 function sumWithDefaults(a, b = 100) {
 
-  return a + b;
+    return a + b;
 }
 
 sumWithDefaults(78);
@@ -49,8 +48,10 @@ sumWithDefaults(78);
  */
 function returnFnResult(fn) {
 
-  return fn()
+    return fn();
 }
+
+returnFnResult(() => '123');
 
 /*
  Задание 4:
@@ -65,17 +66,17 @@ function returnFnResult(fn) {
    console.log(f()); // выведет 12
    console.log(f()); // выведет 13
  */
-function returnCounter(number){
-  var counter = number;
+function returnCounter( number ) {
+    var counter = number;
 
     return () => counter++;
 }
 
 var f = returnCounter(10);
 
-console.log(f());
-console.log(f());
-console.log(f());
+f();
+f();
+f();
 
 /*
  Задание 5 *:
@@ -87,12 +88,12 @@ console.log(f());
    returnArgumentsArray(1, 2, 3) вернет [1, 2, 3]
  */
 function returnArgumentsArray () {
-  var args = Array.prototype.slice.call(arguments);
+    var args = Array.prototype.slice.call(arguments);
 
-  return args;
+    return args;
 }
 
-console.log(returnArgumentsArray(1,2,3));
+returnArgumentsArray(1, 2, 3);
 
 /*
  Задание 6 *:
@@ -111,18 +112,18 @@ console.log(returnArgumentsArray(1,2,3));
  */
 var multiply;
 
-function bindFunction(fn,a,b){
-  multiply = function(){
+function bindFunction(fn, a, b) {
+    multiply = function() {
 
-    return a + b;
-  }
+        return a * b;
+    }
 
-  return multiply;
+    return multiply;
 }
 
-var newRes = bindFunction(multiply,2,4);
+var newRes = bindFunction(multiply, 2, 2);
 
-console.log(newRes());
+newRes();
 
 export {
     returnFirstArgument,
