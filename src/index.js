@@ -17,27 +17,22 @@
    isAllTrue([100, 2, 3, 4, 5], n => n < 10) // вернет false
  */
 function isAllTrue(array, fn) {
-    try {
-        if (!(array instanceof Array) || array.length == 0 ) {
-            throw new Error('empty array');
-        }
-        if (!(fn instanceof Function)) {
-            throw new Error('fn is not a function');
-        }
 
-        for (var i = 0; i < array.length; i++) {
-            if (!fn(array[i])) {
-
-                return false;
-            }
-        }
-
-        return true;
-
-    } catch (e) {
-
-        throw e;
+    if (!Array.isArray(array) || array.length == 0 ) {
+        throw new Error('empty array');
     }
+    if (!(fn instanceof Function)) {
+        throw new Error('fn is not a function');
+    }
+
+    for (var i = 0; i < array.length; i++) {
+        if (!fn(array[i])) {
+
+            return false;
+        }
+    }
+
+    return true;
 }
 
 /*
@@ -57,28 +52,22 @@ function isAllTrue(array, fn) {
    isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false
  */
 function isSomeTrue(array, fn) {
-    try {
-
-        if (!(array instanceof Array) || array.length == 0 ) {
-            throw new Error('empty array');
-        }
-        if (!(fn instanceof Function)) {
-            throw new Error('fn is not a function');
-        }
-
-        for (var i = 0; i < array.length; i++) {
-            if (fn(array[i])) {
-
-                return true;
-            }
-        }
-
-        return false;
-
-    } catch (e) {
-
-        throw e;
+    
+    if (!Array.isArray(array) || array.length == 0 ) {
+        throw new Error('empty array');
     }
+    if (!(fn instanceof Function)) {
+        throw new Error('fn is not a function');
+    }
+
+    for (var i = 0; i < array.length; i++) {
+        if (fn(array[i])) {
+
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /*
@@ -93,6 +82,7 @@ function isSomeTrue(array, fn) {
    - fn не является функцией (с текстом "fn is not a function")
  */
 function returnBadArguments(fn) {
+
     if (!(fn instanceof Function)) {
         throw new Error('fn is not a function');
     }
