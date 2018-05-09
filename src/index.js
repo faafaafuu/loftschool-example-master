@@ -11,22 +11,22 @@
    createDivWithText('loftschool') // создаст элемент div, поместит в него 'loftschool' и вернет созданный элемент
  */
 function createDivWithText(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
+    const div = document.createElement('div');
+  
+    div.textContent = text;
 
-  return div;
+    return div;
 }
 
 /*
  Задание 2:
 
  Функция должна вставлять элемент, переданный в переметре what в начало элемента, переданного в параметре where
-
  Пример:
    prepend(document.querySelector('#one'), document.querySelector('#two')) // добавит элемент переданный первым аргументом в начало элемента переданного вторым аргументом
  */
 function prepend(what, where) {
-  where.insertBefore(what, where.firstChild);
+    where.insertBefore(what, where.firstChild);
 
 }
 
@@ -50,15 +50,15 @@ function prepend(what, where) {
    findAllPSiblings(document.body) // функция должна вернуть массив с элементами div и span т.к. следующим соседом этих элементов является элемент с тегом P
  */
 function findAllPSiblings(where) {
-  var arr = [];
+    var arr = [];
 
-  for (var i = 0; i < where.children.length; i++){
-    if (where.children[i].tagName == 'P') {
-      arr.push(where.children[i].previousElementSibling);
+    for (var i = 0; i < where.children.length; i++) {
+        if (where.children[i].tagName == 'P') {
+            arr.push(where.children[i].previousElementSibling);
+        }
     }
-  }
 
-  return arr;
+    return arr;
 }
 
 // var arr = [];
@@ -105,7 +105,7 @@ function findError(where) {
    должно быть преобразовано в <div></div><p></p>
  */
 function deleteTextNodes(where) {
-    Array.from(where.childNodes).filter(e=>e.nodeType == 3).filter(e=>e.remove());
+    return Array.from(where.childNodes).filter(e=>e.nodeType == 3).filter(e=>e.remove());
 }
 
 /*
@@ -121,8 +121,9 @@ function deleteTextNodes(where) {
    должно быть преобразовано в <span><div><b></b></div><p></p></span>
  */
 function deleteTextNodesRecursive(where) {
-  Array.from(where.childNodes).filter(e => e.nodeType == 3).filter(e => e.remove());
-  Array.from(where.children).filter(deleteTextNodesRecursive);
+    Array.from(where.childNodes).filter(e => e.nodeType == 3).filter(e => e.remove());
+    
+    return Array.from(where.children).filter(deleteTextNodesRecursive);
 }
 
 /*
@@ -146,11 +147,11 @@ function deleteTextNodesRecursive(where) {
    }
  */
 function collectDOMStat(root) {
-  const obj = {
-    tags:{},
-    classes:{},
-    texts:0
-  }
+    const obj = {
+      tags:{},
+      classes:{},
+      texts:0
+    }
 }
 
 /*
