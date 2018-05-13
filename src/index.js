@@ -50,9 +50,9 @@ function prepend(what, where) {
    findAllPSiblings(document.body) // функция должна вернуть массив с элементами div и span т.к. следующим соседом этих элементов является элемент с тегом P
  */
 function findAllPSiblings(where) {
-    var arr = [];
+    const arr = [];
 
-    for (var i = 0; i < where.children.length; i++) {
+    for (let i = 0; i < where.children.length; i++) {
         if (where.children[i].tagName == 'P') {
             arr.push(where.children[i].previousElementSibling);
         }
@@ -89,7 +89,7 @@ function findAllPSiblings(where) {
    findError(document.body) // функция должна вернуть массив с элементами 'привет' и 'loftschool'
  */
 function findError(where) {
-    return Array.from(where.children).map(e => e.textContent)
+    return [...where.children].map(e => e.textContent)
 }
 
 /*
@@ -105,7 +105,7 @@ function findError(where) {
    должно быть преобразовано в <div></div><p></p>
  */
 function deleteTextNodes(where) {
-    return Array.from(where.childNodes).filter(e=>e.nodeType == 3).filter(e=>e.remove());
+    return [...where.childNodes].forEach(e=>e.nodeType == 3 && e.remove())
 }
 
 /*
@@ -121,9 +121,9 @@ function deleteTextNodes(where) {
    должно быть преобразовано в <span><div><b></b></div><p></p></span>
  */
 function deleteTextNodesRecursive(where) {
-    Array.from(where.childNodes).filter(e => e.nodeType == 3).filter(e => e.remove());
+    [...where.childNodes].forEach(e=>e.nodeType == 3 && e.remove())
     
-    return Array.from(where.children).filter(deleteTextNodesRecursive);
+    return [...where.children].forEach(deleteTextNodesRecursive);
 }
 
 /*
@@ -161,11 +161,10 @@ function collectDOMStat(root) {
                 count(obj, 'texts')
             } else if (node.nodeType === 1) {
                 count(obj.tags, node.tagName);
-                for (var j = 0; j < node.classList.length; j++) {
-                    count(obj.classes, node.classList[j]);
+                [...node.classList].forEach(cls => count(obj.classes, cls)) 
                 }
-                getStat(node);
-            }
+
+            getStat(node);
         }
     }
 
@@ -222,7 +221,7 @@ function observeChildNodes(where, fn) {
 
             if (mutation.addedNodes.length) {
                 args.type = 'insert';
-                args.nodes = [].slice.call(mutation.addedNodes);
+                args.nodes = [...mutation.addedNodes]
             }
             if (mutation.removedNodes.length) {
                 args.type = 'remove';
