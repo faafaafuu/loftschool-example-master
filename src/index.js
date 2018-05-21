@@ -10,7 +10,7 @@
  */
 function delayPromise(seconds) {
     return new Promise((resolve) => {
-        setTimeout(() => resolve(), seconds * 1000) } )
+        setTimeout(resolve, seconds * 1000) } )
 }
 
 /*
@@ -38,7 +38,7 @@ function loadAndSortTowns() {
                     return -1;
                 }
             }))
-        );
+        ).catch(() => console.error('Что-то пошло не так'));
 }
 
 export {
